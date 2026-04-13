@@ -1,7 +1,3 @@
-import sys
-
-sys.dont_write_bytecode = True
-
 import argparse
 import json
 import os
@@ -10,7 +6,6 @@ from enum import Enum
 from urllib.parse import urlparse
 
 from yt_dlp import YoutubeDL
-
 
 COOKIE = os.getenv("COOKIE", "")
 HOME_DIR = os.getenv("HOME", "")
@@ -105,7 +100,7 @@ def download_data_list(data_list: list, input_format: str, output_dir: str = OUT
         for i, url in enumerate(data_list):
             data_type = get_data_type(url)
             type_to_ext = {DataType.IMAGE: "png", DataType.VIDEO: "mp4", DataType.YOUTUBE: "mp4"}
-            output_path = os.path.join(output_dir, f"{START+i:04}.{type_to_ext[data_type]}")
+            output_path = os.path.join(output_dir, f"{START + i:04}.{type_to_ext[data_type]}")
             download_data(url, output_path)
         return
 
